@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Inter-Black.ttf",
+      "sha1": "283fa65b96dc1f2d71c6504afb9610447bdcdf1b"
+    },
+    {
+      "path": "assets/fonts/Inter-Medium.ttf",
+      "sha1": "a418a8ba73bbcfa8c131c426ab836d78457afa9b"
+    },
+    {
+      "path": "assets/fonts/Inter-Regular.ttf",
+      "sha1": "7237d9cf55f177702066a28a4dde1e4c7e8ab576"
+    },
+    {
+      "path": "assets/fonts/Inter-SemiBold.ttf",
+      "sha1": "431007da316de60d85174aeec9b8389b5c73e7d6"
+    },
+    {
+      "path": "assets/fonts/NeueHaasDisplay-Black.ttf",
+      "sha1": "f30f501fa0b54325089d9cbb1ba2db2b89c7af2b"
+    },
+    {
+      "path": "assets/fonts/NeueHaasDisplay-Bold.ttf",
+      "sha1": "bae948fbf63e37b2bbc2aa30666d057a2ef7aa42"
+    },
+    {
+      "path": "assets/fonts/NeueHaasDisplay-Roman.ttf",
+      "sha1": "a5b51ae0caf2edc5d42d2ab1a9d6a5b3d6c99368"
+    },
+    {
+      "path": "assets/fonts/PoppinsBold.ttf",
+      "sha1": "875cf0cecd647bcf22e79d633d868c1b1ec98dfa"
+    },
+    {
+      "path": "assets/fonts/PoppinsMedium.ttf",
+      "sha1": "283f21b44efbdbf276ba802be2d949a36bbc4233"
+    },
+    {
+      "path": "assets/fonts/PoppinsRegular.ttf",
+      "sha1": "fdd3002e7d814ee47c1c1b8487c72c6bbb3a2d00"
+    },
+    {
+      "path": "assets/fonts/PoppinsSemiBold.ttf",
+      "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
+    },
+    {
+      "path": "assets/fonts/Tailwind Regular.ttf",
+      "sha1": "afb48d62f92a0840e6a2a05bf2b194c350c240d7"
+    },
+    {
+      "path": "assets/fonts/Tailwind SC Light.ttf",
+      "sha1": "0314bcd5ef0b902395ecf6678b9f5873d3a01cda"
+    },
+    {
+      "path": "assets/fonts/Tailwind SC Regular.ttf",
+      "sha1": "72d012c4c725aa299bf260421bbc7f27cc441339"
+    }
+  ]
+}

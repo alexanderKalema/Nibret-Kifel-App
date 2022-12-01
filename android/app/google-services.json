@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "897652873178",
+    "firebase_url": "https://nibret-app-default-rtdb.firebaseio.com",
+    "project_id": "nibret-app",
+    "storage_bucket": "nibret-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897652873178:android:1e1f917149d2c8905e52e3",
+        "android_client_info": {
+          "package_name": "com.nibret_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897652873178-ppigb5rq531v3mjm2r84njukr869d3cc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUoPRuYDWVI_luz5PGvXlwIs-NojpaI2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897652873178-ppigb5rq531v3mjm2r84njukr869d3cc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
