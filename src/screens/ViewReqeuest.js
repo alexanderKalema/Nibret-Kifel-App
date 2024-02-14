@@ -29,9 +29,9 @@ export default function ViewTabStack() {
           <Ionicons name="chevron-back" size={50} color="#F7F7F7" />
         </TouchableOpacity>
         <GlobalText
-          mylabel={'View Request'}
+          mylabel={'የቀረቡ ጥያቄዎች ይመልከቱ'}
           myfont={'PoppinsMedium'}
-          mystyle={{fontSize: 40, color: 'white', marginRight:20}}
+          mystyle={{fontSize: 27, color: 'white', marginRight: 20}}
         />
         <View></View>
       </View>
@@ -58,7 +58,7 @@ export default function ViewTabStack() {
           },
         }}>
         <Tab.Screen
-          name="Pending"
+          name="ያልተመለሱ"
           component={Pending}
           options={{
             // tabBarLabel: 'Home',
@@ -68,7 +68,7 @@ export default function ViewTabStack() {
           }}
         />
         <Tab.Screen
-          name="Dealt With"
+          name="የተመለሱ"
           component={Dealt}
           options={{
             tabBarIcon: ({color, size}) => (

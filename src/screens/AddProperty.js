@@ -53,15 +53,15 @@ useEffect(() => {
   const[status,setStatus]=useState([]);
   const[visible,setVisible]=useState(false);
   const [nibretForm, setNibretForm] = useState({
-    Name: '',
-    Id: '',
-    Doc_Id: '',
-    Amount_Lost: 0,
-    Amount_Needs_Repair: 0,
-    Amount_In_Good_Shape: 0,
-    Amount_Other: 0,
-    Type: '',
-    Image_id: '',
+    ስም: '',
+    መለያ: '',
+    ፋይል_መለያ: '',
+    የጠፋ_መጠን: 0,
+    ጥገና_የሚያስፈልገው_መጠን: 0,
+    ጥሩ_ሁኔታ_ላይ_ያለ_መጠን: 0,
+    ሌላ_መጠን: 0,
+    አይነት: '',
+    ምስል_መለያ: '',
   });
 
 
@@ -84,7 +84,7 @@ useEffect(() => {
     const response = await fetch(localFile.path);
     const blob = await response.blob();
     const filename = blob._data.blobId;
-    nibretForm.Image_id = filename;
+    nibretForm.ምስል_መለያ = filename;
     var ref = storage().ref().child(filename).put(blob);
 
     try {
@@ -98,12 +98,15 @@ useEffect(() => {
   }
 
   const onSubmit =async ()=>{
-    nibretForm.Doc_Id = nibretForm.Id.replaceAll('/', '_');
-   nibretForm.Type = type;
 
-  await uploadImage()(authDispatch);
+    nibretForm.ፋይል_መለያ = nibretForm.መለያ.replaceAll('/', '_');
+   nibretForm.አይነት = type;
+if(localFile) await uploadImage()(authDispatch);
+
+console.log(nibretForm,'here');
 
     AddNibret(nibretForm)(authDispatch);
+  
   }
 
   const closeSheet = () => {
@@ -117,8 +120,6 @@ useEffect(() => {
       sheetRef.current.open();
     }
   };
-const SCREEN_HEIGHT = Dimensions.get('screen').height;
-
   return (
     <View style={Styles.bigContainer}>
       <ConfirmationDialog
@@ -134,45 +135,47 @@ const SCREEN_HEIGHT = Dimensions.get('screen').height;
       />
       <InformationDialog
         visible={infovisible}
-        content={'You have successfully added a new item.'}
+        content={'አዲስ ንብረት በትክክል ጨምረዋል'}
         setVisible={setinfoVisible}
-        myfuntion={() => pop()}
+        myfuntion={() => {pop(); authDispatch({
+          type: 'CLEAR_STATE',
+        });}}
       />
-      <View style={{flex: 1,paddingHorizontal: 25}}>
+      <View style={{flex: 1, paddingHorizontal: 25}}>
         <TouchableOpacity onPress={() => pop()}>
           <Ionicons name="chevron-back" size={40} color="#F7F7F7" />
         </TouchableOpacity>
 
         <GlobalText
-          mylabel={' Add Property'}
+          mylabel={'     ንብረት ማስገብያ ቅጽ'}
           myfont={'PoppinsMedium'}
-          mystyle={{fontSize: 35, marginTop: 20}}
+          mystyle={{fontSize: 35, marginTop: 20, color: '#F7F7F7'}}
         />
       </View>
       <View style={Styles.subContainer}>
         <GlobalText
-          mylabel={'Enter property information'}
+          mylabel={'የንብረቱን ባህሪ ያስገቡ'}
           myfont={'PoppinsMedium'}
           mystyle={{fontSize: 20, marginLeft: 20, marginBottom: 15}}
         />
         <KeyboardAwareScrollView
           keyboardShouldPersistTaps={'never'}
           showsVerticalScrollIndicator={false}>
-          <Input label="Name" data="Name" onChange={onChange} />
-          <Input label="Id" data="Id" onChange={onChange} />
+          <Input label="ስም" data="ስም" onChange={onChange} />
+          <Input label="መለያ" data="መለያ" onChange={onChange} />
 
-          <DropMenu data={typeData} label={'Type'} multiAssigner={setType} />
+          <DropMenu data={typeData} label={'አይነት'} multiAssigner={setType} />
           <DropMenu
             data={statusData}
-            label={'Status'}
+            label={'ያለበትን ሁኔታ'}
             multiAssigner={setStatus}
           />
           {status !== undefined
             ? status.map((items) => (
                 <Input
                   key={items}
-                  label={`Enter amount of ${items}`}
-                  data={`Amount${items.replace(/\s/g, '_')}`}
+                  label={`${items} መጠን ያስገቡ`}
+                  data={`${items.replace(/\s/g, '_')}_መጠን`}
                   onChange={onChange}
                 />
               ))
@@ -180,14 +183,14 @@ const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
           <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
           <ImageComponent
-            label={'Image'}
+            label={'ምስል'}
             popper={openSheet}
             selectedImage={localFile}
           />
         </KeyboardAwareScrollView>
         <View>
           <TouchableOpacity onPress={showModal}>
-            <Submit label="Submit" />
+            <Submit label="ያስገቡ" />
           </TouchableOpacity>
         </View>
       </View>

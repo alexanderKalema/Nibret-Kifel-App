@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component, useState} from 'react';
-import {View, StatusBar, TextInput, Text, Button} from 'react-native';
+import React, { useState} from 'react';
+import {View, TextInput,} from 'react-native';
 
 import GlobalText from '../global/global_text';
 
@@ -26,10 +26,10 @@ export default function FloatingLabelInput({label, ...prop}) {
       ) : null}
 
       <TextInput
-        keyboardType={label === 'Email' ? 'email-address' : 'default'}
-        secureTextEntry={label === 'Password' ? true : false}
+        keyboardType={prop.display === 'Email' ? 'email-address' : 'default'}
+        secureTextEntry={prop.display === 'Password' ? true : false}
         //{...prop.onChangeText}
-        onChangeText={(value) => prop.onChange({name:label,value})}
+        onChangeText={(value) => prop.onChange({name: prop.display, value})}
         style={{
           marginTop: 5,
           paddingBottom: 0,

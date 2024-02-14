@@ -3,30 +3,42 @@
 /* eslint-disable eol-last */
 /* eslint-disable semi */
 /* eslint-disable prettier/prettier */
-import { View, StyleSheet, Dimensions, TouchableOpacity, ScrollViewBase } from 'react-native'
+import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import Tabs from '../models/tabs';
 import GlobalText from '../global/global_text';
 import { GlobalContext } from '../services/provider';
 import LoginDialog from '../utils/login_dialog';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { onAppBootstrap } from '../services/notification/messaging';
 
 export default function Home({navigation}) {
 
-const [skipCount, setSkipCount] = useState(true);
-const {
-  authDispatch,
-  authState: {isLoggedIn, loading},
+
+
+
+const [isLoggedIn, setIsLoggedin] = useState('');
+const { authState: { loading}
 } = useContext(GlobalContext);
 
 const[visible,setVisible]= useState(false);
 
  useEffect(() => {
-   if (skipCount) {setSkipCount(false);
-}
-   if (!skipCount){setVisible(isLoggedIn); }
- }, [isLoggedIn]);
+
+  // onAppBootstrap()
+
+ 
+const asyncWrap = async () => {
+   await AsyncStorage.getItem('isLoggedin').then(
+    value=>{
+    setIsLoggedin(value)
+    }
+   );
+};
+asyncWrap();
+
+ }, []);
 
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
   return (
@@ -74,9 +86,9 @@ const[visible,setVisible]= useState(false);
       <ScrollView style={{height: 'auto'}}>
         <Tabs
           iconName={'folder-add'}
-          title={'Add a property'}
+          title={'ንብረት ይመዝግቡ'}
           onclick={
-            !isLoggedIn
+            !(isLoggedIn === 'true')
               ? () => {
                   setVisible(true);
                 }
@@ -87,18 +99,18 @@ const[visible,setVisible]= useState(false);
         />
         <Tabs
           iconName={'eye'}
-          title={'View a property'}
+          title={'ያሉ ንብረቶች ይመልከቱ'}
           onclick={() => {
             navigation.navigate('ViewProperty');
           }}
         />
-        <Tabs iconName={'page-edit'} title={'Make a request'} />
+        <Tabs iconName={'page-edit'} title={'ንብረት ለመዋስ ጥያቄ ያቅርቡ'} />
         <View style={{marginBottom: 30}}>
           <Tabs
             iconName={'monitor'}
-            title={'View requests'}
+            title={'የቀረቡ ጥያቄዎች ይመልከቱ'}
             onclick={
-              !isLoggedIn
+              !(isLoggedIn == 'true')
                 ? () => {
                     setVisible(true);
                   }

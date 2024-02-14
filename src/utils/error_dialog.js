@@ -7,34 +7,31 @@ export default function ErrorDialog({content,visible,setVisible}) {
  var mycontent ="";
 
           if(content?.includes("wrong-password")){
-             mycontent="Wrong Credentials";
+             mycontent = 'ያስገቡት መርጃ ልክ አይደለም';
           }
           else if(content?.includes("network")){
-           mycontent=  "Check your internet connection";
+           mycontent = 'ኢንተርኔት ማብራቶን ያረጋግጡ';
           }
          else if(content?.includes("user-not-found")){
-           mycontent=  "Sorry! Your not an authorized user";
+           mycontent = 'ይቅርታ! ለማለፍ ፍቃድ የሎትም';
           }
          else if (content?.includes('request')) {
-            mycontent = 'Sorry! Too many request';
+            mycontent = 'ብዙ ጊዜ ሞክረዋል! ትንሽ ቆይተው ይሞክሩ';
           } 
           else {
-             mycontent = 'Sorry! We encounterd an error';
+             mycontent = 'ይቅርታ! ችግር አጋጥሞናል';
           }
         
 
   return (
-    <Modal
-    transparent
-  visible ={visible}
-    >
+    <Modal transparent visible={visible}>
       <GenericDialog
         icon={'error'}
         title={'An Error occured'}
-        content ={mycontent}
+        content={mycontent}
         optionBuilder={[
-          {name: 'OK', action:()=> setVisible(false)},
-          {name: 'Cancel', action: ()=>setVisible(false)},
+          {name: 'አዎ', action: () => setVisible(false)},
+          {name: 'ይሰርዙ', action: () => setVisible(false)},
         ]}
       />
     </Modal>

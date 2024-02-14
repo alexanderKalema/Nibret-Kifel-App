@@ -33,10 +33,10 @@ export default function Tabs({iconName,title,onclick}) {
 
   return (
     <View>
-      {title === 'Make a request' ? (
+      {title === 'ንብረት ለመዋስ ጥያቄ ያቅርቡ' ? (
         <SelectList
-         setSelected={(val) => setSelected(val)}
-          onSelect={()=>filter()}
+          setSelected={(val) => setSelected(val)}
+          onSelect={() => filter()}
           data={RequestData}
           save="value"
           dropdownStyles={{
@@ -45,7 +45,7 @@ export default function Tabs({iconName,title,onclick}) {
             backgroundColor: 'white',
             justifyContent: 'space-between',
           }}
-          inputStyles={{fontSize:0}}
+          inputStyles={{fontSize: 0}}
           dropdownTextStyles={{fontSize: 18, marginVertical: 5}}
           placeholder=" "
           arrowicon={

@@ -13,10 +13,16 @@ export default function InformationDialog({
     <Modal transparent visible={visible}>
       <GenericDialog
         icon={'check-box'}
-        title={'Success'}
+        title={'ተሳክቷል'}
         content={content}
         optionBuilder={[
-          {name: 'OK', action: () => {setVisible(false); myfuntion();}},
+          {
+            name: 'እሺ',
+            action: () => {
+              setVisible(false);
+              myfuntion();
+            },
+          },
         ]}
       />
     </Modal>

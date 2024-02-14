@@ -18,25 +18,27 @@ export default function Cards({form}) {
 
     const {
       authDispatch,
-      authState: {isLoggedIn, loading},
+      authState: {loading},
     } = useContext(GlobalContext);
 
-    const [skipCount, setSkipCount] = useState(true);
+    const [isLoggedIn, setIsLoggedin] = useState('');
     const [visible, setVisible] = useState(false);
     useEffect(() => {
-      if (skipCount) {
-        setSkipCount(false);
-      }
-      if (!skipCount) {
-        setVisible(!isLoggedIn);
-      }
-    }, [isLoggedIn]);
+     
+const asyncWrap = async () => {
+   await AsyncStorage.getItem('isLoggedin').then(
+    value=>{
+    setIsLoggedin(value)
+    }
+   );
+ asyncWrap();  
+}}, []);
 
   const navigate= useNavigation();
 
   const [imageurl, setImageUrl] = useState('');
   const renderImage = async () => {
-    const url = await storage().ref(`${form.Image_id}`).getDownloadURL();
+    const url = await storage().ref(`${form.ምስል_መለያ}`).getDownloadURL();
     setImageUrl(url);
   };
 
@@ -67,56 +69,53 @@ export default function Cards({form}) {
         <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
           <TouchableOpacity
             onPress={
-
-
-   !isLoggedIn
-     ? () => {
-         setVisible(true);
-       }
-     : () => {
- navigate.push('EditProperty', form);       }
-
-             
+              isLoggedIn === 'true'
+                ? () => {
+                    setVisible(true);
+                  }
+                : () => {
+                    navigate.push('EditProperty', form);
+                  }
             }>
             <FontAwesome name="edit" size={20} color={'black'} />
           </TouchableOpacity>
         </View>
         <GlobalText
-          mylabel={`Name : ${form.Name}`}
+          mylabel={`ስም : ${form.ስም}`}
           myfont={'PoppinsMedium'}
           mystyle={{fontSize: 20}}
         />
         <GlobalText
-          mylabel={`Id : ${form.Id}`}
+          mylabel={`መለያ : ${form.መለያ}`}
           myfont={'PoppinsMedium'}
           mystyle={{fontSize: 9, color: 'grey'}}
         />
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <View>
             <GlobalText
-              mylabel={`Type: ${form.Type}`}
+              mylabel={`አይነት: ${form.አይነት}`}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 13, color: 'grey'}}
             />
             <GlobalText
-              mylabel={`Lost: ${form.Amount_Lost}`}
+              mylabel={`የጠፋ : ${form.የጠፋ_መጠን}`}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 13, color: 'grey'}}
             />
             <GlobalText
-              mylabel={`In Good Shape: ${form.Amount_In_Good_Shape}`}
+              mylabel={`ጥሩ ሁኔታ ላይ ያለ: ${form.ጥሩ_ሁኔታ_ላይ_ያለ_መጠን}`}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 13, color: 'grey'}}
             />
           </View>
           <View style={{marginLeft: 25}}>
             <GlobalText
-              mylabel={`Needs Repair: ${form.Amount_Needs_Repair}`}
+              mylabel={`ጥገና የሚያስፈልገው: ${form.ጥገና_የሚያስፈልገው_መጠን}`}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 13, color: 'grey'}}
             />
             <GlobalText
-              mylabel={`Amount Other: ${form.Amount_Other}`}
+              mylabel={`ሌላ: ${form.ሌላ_መጠን}`}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 13, color: 'grey'}}
             />
@@ -128,7 +127,7 @@ export default function Cards({form}) {
 }
 const TabStyle = StyleSheet.create({
   image: {
-    backgroundColor: '#354545',
+    backgroundColor: '#F2F3F2',
     width: '100%',
     height: 300,
     marginTop: 25,

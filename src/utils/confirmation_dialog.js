@@ -8,11 +8,17 @@ export default function ConfirmationDialog({content, visible, setVisible,myfunct
     <Modal transparent visible={visible}>
       <GenericDialog
         icon={'pan-tool'}
-        title={'Confirmation'}
-        content={"Are you sure you want to continue?"}
+        title={'ማረጋገጫ'}
+        content={'ለመቀጠል እርግጠኛ ኖት?'}
         optionBuilder={[
-          {name: 'Yes', action: () => {  myfunction();  setVisible(false)}},
-          {name: 'No', action: () => setVisible(false)},
+          {
+            name: 'እሺ',
+            action: () => {
+              myfunction();
+              setVisible(false);
+            },
+          },
+          {name: 'አይ', action: () => setVisible(false)},
         ]}
       />
     </Modal>

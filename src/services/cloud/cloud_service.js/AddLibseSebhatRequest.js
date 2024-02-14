@@ -19,6 +19,7 @@ export default (form) => async (dispatch) => {
       አክሊል_መጠን: form.Amount_Aklil,
       ካባ_መጠን: form.Amount_Kaba,
       አስረካቢው_ስም: form.Donor_Name,
+      ምክንያት : form.Reason,
       ምርመራ: form.Status,
       Pending: true,
     });

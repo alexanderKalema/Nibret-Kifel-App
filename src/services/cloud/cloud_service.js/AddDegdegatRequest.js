@@ -16,6 +16,7 @@ export default (form) => async (dispatch) => {
       ተቀባይ_ከፍል: form.Reciever_Class,
       ቀሚስ_መጠን: form.Amount_Kemis,
       ሻሸ_መጠን: form.Amount_Shash,
+      ምክንያት: form.Reason,
       አክሊል_መጠን: form.Amount_Aklil,
       ከፋይ_ድግድጋት_መጠን: form.Amount_Kefay_Degdegat,
       ሞጣህት_መጠን: form.Amount_Motaht,

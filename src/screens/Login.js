@@ -22,7 +22,6 @@ import LoginUser from '../services/auth/LoginUser';
 import { GlobalContext } from '../services/provider';
 import ErrorDialog from '../utils/error_dialog';
 import { useNavigation } from '@react-navigation/native';
-import { logIn } from '../services/auth/firebase_auth_provider';
 import Loading from '../utils/loading';
 import InformationDialog from '../utils/info_dialog';
 
@@ -81,7 +80,7 @@ import InformationDialog from '../utils/info_dialog';
         <Loading visible={loadingvisible} />
         <InformationDialog
           visible={infovisible}
-          content={'You can now add and edit property'}
+          content={'ንብረት መጨመር, ማስተካከል, ጥያቄዎችን መመለስ ይችላሉ'}
           setVisible={setinfoVisible}
           myfuntion={() => pop()}
         />
@@ -101,7 +100,7 @@ import InformationDialog from '../utils/info_dialog';
             </TouchableOpacity>
 
             <GlobalText
-              mylabel={'Welcome \n Back'}
+              mylabel={'እንኳን ደህና መጡ'}
               myfont={'PoppinsMedium'}
               mystyle={{fontSize: 35}}
             />
@@ -109,14 +108,16 @@ import InformationDialog from '../utils/info_dialog';
 
           <View style={Styles.BottomView}>
             <FloatingLabelInput
-              label="Email"
+              label="ኢሜል"
+              display="Email"
               value={form['Email']}
               onChange={onChange}
             />
             <View style={{marginVertical: 10}}></View>
 
             <FloatingLabelInput
-              label="Password"
+              label="ሚስጥር ቁልፍ"
+              display="Password"
               value={form['Password']}
               onChange={onChange}
             />
@@ -130,7 +131,7 @@ import InformationDialog from '../utils/info_dialog';
                 marginTop: 70,
               }}>
               <GlobalText
-                mylabel={'Sign in'}
+                mylabel={'ይግቡ'}
                 myfont={'PoppinsMedium'}
                 mystyle={{fontSize: 25}}
               />

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Input from './input';
@@ -32,6 +32,7 @@ export default Connector = React.forwardRef(({id},ref) => {
     
      setinfoVisible(submitted);
    } else {
+    isMounted.current = true;
     
    }
  }, [submitted]);
@@ -81,7 +82,7 @@ export default Connector = React.forwardRef(({id},ref) => {
         />
         <InformationDialog
           visible={infovisible}
-          content={'You have successfully added a new item.'}
+          content={'ንብረቱ በትክክል ተመልሷል'}
           setVisible={setinfoVisible}
           myfuntion={() => {
             pop();

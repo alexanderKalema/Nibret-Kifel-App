@@ -63,6 +63,7 @@ export default function SecondType() {
   const [visible, setVisible] = useState(false);
   const [tendDerbForm, setTendDerbForm] = useState({
     Cloth_Type: 'ጥንድ ድርብ ልብሰ ስብሃት',
+    Reason: '',
     Reciever_Name: '',
     Date_Recieved: '',
     Date_Returned: '',
@@ -109,11 +110,14 @@ tendDerbForm.Date_Recieved = currentDate;
       />
       <InformationDialog
         visible={infovisible}
-        content={'You have successfully added a new item.'}
+        content={'አዲስ ጥያቄ በትክክል ጨምረዋል'}
         setVisible={setinfoVisible}
-        myfuntion={() => {pop();  authDispatch({
-          type: 'CLEAR_STATE',
-        });}}
+        myfuntion={() => {
+          pop();
+          authDispatch({
+            type: 'CLEAR_STATE',
+          });
+        }}
       />
       <View style={{flex: 1, paddingHorizontal: 25}}>
         <TouchableOpacity onPress={() => pop()}>
@@ -139,6 +143,7 @@ tendDerbForm.Date_Recieved = currentDate;
         <KeyboardAwareScrollView
           keyboardShouldPersistTaps={'never'}
           showsVerticalScrollIndicator={false}>
+          <Input label="ምክንያት" data="Reason" onChange={onChange} />
           <GlobalText
             mylabel={'ብዛት ያስገቡ :'}
             myfont={'Tailwind SC Regular'}
@@ -168,11 +173,7 @@ tendDerbForm.Date_Recieved = currentDate;
               <Input label="ነጠላ" data="Amount_Netela" onChange={onChange} />
             </View>
             <View style={{flex: 1}}>
-              <Input
-                label="ጫማ"
-                data="Amount_Chama"
-                onChange={onChange}
-              />
+              <Input label="ጫማ" data="Amount_Chama" onChange={onChange} />
             </View>
           </View>
           <View
@@ -196,7 +197,7 @@ tendDerbForm.Date_Recieved = currentDate;
         </KeyboardAwareScrollView>
         <View>
           <TouchableOpacity onPress={showModal}>
-            <Submit label="Submit" />
+            <Submit label="ያመልክቱ" />
           </TouchableOpacity>
         </View>
       </View>

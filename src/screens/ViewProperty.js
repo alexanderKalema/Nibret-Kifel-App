@@ -4,22 +4,15 @@
 /* eslint-disable semi */
 /* eslint-disable prettier/prettier */
 
-import {View, Text, StyleSheet, ScrollView, Dimensions, Modal, Button, TouchableOpacity} from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import GlobalText from '../global/global_text';
 import Input from '../models/input';
-import Submit from '../models/submit';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Filter from '../models/filter';
-import GenericDialog from '../models/generic_dialog';
-import ErrorDialog from '../utils/error_dialog';
-import Cards from '../models/cards';
+
 import { ShowCards } from '../models/showcards';
 import { useNavigation } from '@react-navigation/native';
-import { GlobalContext } from '../services/provider';
-import LoginDialog from '../utils/login_dialog';
-
 
 export default function ViewProperty() {
 
@@ -28,7 +21,7 @@ export default function ViewProperty() {
 
   const{pop}=useNavigation();
   const [search, setSearch] = useState({mysearch:''});
-   const [choosenFilter, setchoosenFilter] = useState('All');
+   const [choosenFilter, setchoosenFilter] = useState('ሁሉም');
    const [searchSubmitter, setSearchSubmitter] = useState({mysearch: ''});
 
  const onChange = ({name, value}) => {
@@ -39,7 +32,6 @@ export default function ViewProperty() {
 
   return (
     <View style={Styles.bigContainer}>
-      
       <View
         style={{
           flex: 1,
@@ -52,15 +44,15 @@ export default function ViewProperty() {
         </TouchableOpacity>
 
         <GlobalText
-          mylabel={'View Property'}
+          mylabel={'ያሉ ንብረቶች ይመልከቱ'}
           myfont={'PoppinsMedium'}
-          mystyle={{fontSize: 35, marginLeft: 20}}
+          mystyle={{fontSize: 35, marginLeft: 20, color: '#F7F7F7'}}
         />
       </View>
       <View style={Styles.subContainer}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={{flex: 1}}>
-            <Input label="Search" data="mysearch" onChange={onChange} />
+            <Input label="ይፈልጉ" data="mysearch" onChange={onChange} />
           </View>
           <TouchableOpacity onPress={() => setSearchSubmitter(search)}>
             <View
@@ -72,7 +64,7 @@ export default function ViewProperty() {
                 borderRadius: 10,
               }}>
               <GlobalText
-                mylabel={'Search'}
+                mylabel={'ይፈልጉ'}
                 myfont={'Tailwind SC Regular'}
                 mystyle={{fontSize: 18, color: 'white'}}
               />
@@ -80,7 +72,7 @@ export default function ViewProperty() {
           </TouchableOpacity>
         </View>
         <GlobalText
-          mylabel={'Filter By:'}
+          mylabel={'መለያ የመረጡ:'}
           myfont={'Tailwind SC Regular'}
           mystyle={{fontSize: 14, marginTop: 5}}
         />
@@ -89,52 +81,52 @@ export default function ViewProperty() {
           horizontal
           style={{flex: 1}}>
           <Filter
-            label={'All'}
+            label={'ሁሉም'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Wood'}
+            label={'የእንጨት'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Steel'}
+            label={'የብረት'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Clothing'}
+            label={'አልባሳት'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Paper'}
+            label={'ወረቀት'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Other Type'}
+            label={'ሌላ አይነት'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Lost'}
+            label={'የጠፋ'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Needs Repair'}
+            label={'ጥገና የሚያስፈልገው'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Good Shape'}
+            label={'ጥሩ ሁኔታ ላይ ያለ'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
           <Filter
-            label={'Other Amount'}
+            label={'ሌላ ሁኔታ ላይ ያለ'}
             filter={choosenFilter}
             controller={setchoosenFilter}
           />
@@ -142,7 +134,6 @@ export default function ViewProperty() {
 
         <View style={{flex: 10}}>
           <ShowCards
-          
             type={`${choosenFilter}`}
             search={searchSubmitter.mysearch}
           />

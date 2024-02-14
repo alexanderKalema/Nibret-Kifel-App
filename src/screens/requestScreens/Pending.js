@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View} from 'react-native'
 import React from 'react'
 import RenderRequest from '../../services/cloud/cloud_service.js/RenderRequest';
 

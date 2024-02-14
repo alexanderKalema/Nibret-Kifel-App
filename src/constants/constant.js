@@ -1,17 +1,17 @@
 export const typeData = [
-  {key: '1', value: 'Made of wood'},
-  {key: '2', value: 'Made of steel'},
-  {key: '3', value: 'Clothing'},
-  {key: '4', value: 'Paper'},
-  {key: '5', value: 'Other'},
+  {key: '1', value: 'የእንጨት እቃ'},
+  {key: '2', value: 'የብረት እቃ'},
+  {key: '3', value: 'አልባሳት'},
+  {key: '4', value: 'ወረቀት'},
+  {key: '5', value: 'ሌላ'},
 ];
 
 
 export const statusData = [
-  {key: '1', value: ' Lost'},
-  {key: '2', value: ' Needs Repair'},
-  {key: '3', value: ' In Good Shape'},
-  {key: '4', value: ' Other'},
+  {key: '1', value: 'የጠፋ'},
+  {key: '2', value: 'ጥገና የሚያስፈልገው'},
+  {key: '3', value: 'ጥሩ ሁኔታ ላይ ያለ'},
+  {key: '4', value: 'ሌላ'},
 ];
 
 export const RequestData = [

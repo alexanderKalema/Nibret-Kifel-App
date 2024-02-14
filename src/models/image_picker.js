@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,7 +9,7 @@ import GlobalText from '../global/global_text';
 export default ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
   const options = [
     {
-      name: 'Take from camera',
+      name: 'ከካሜራ ይውሰዱ',
       icon: <Ionicons style={{color: 'grey'}} size={45} name="camera" />,
       onPress: () => {
         ImagePickerCropper.openCamera({
@@ -19,12 +19,11 @@ export default ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
           .then((images) => {
             onFileSelected(images);
           })
-          .catch((error) => {
-          });
+          .catch((error) => {});
       },
     },
     {
-      name: 'Choose from Gallery',
+      name: 'ካሎት ምስሎች ይምረጡ',
       icon: <Ionicons name="image" style={{color: 'grey'}} size={45} />,
       onPress: () => {
         ImagePickerCropper.openPicker({
@@ -32,11 +31,9 @@ export default ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
           freeStyleCropEnabled: true,
         })
           .then((images) => {
-
             onFileSelected(images);
           })
-          .catch((error) => {
-          });
+          .catch((error) => {});
       },
     },
   ];

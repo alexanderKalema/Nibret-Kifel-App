@@ -27,7 +27,7 @@ return (
         <GlobalText
           mylabel={content}
           myfont={'Tailwind SC Regular'}
-          mystyle={{fontSize: 18, marginTop: 20, color: 'grey'}}
+          mystyle={{fontSize: 15, marginTop: 20, color: 'grey'}}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           {optionBuilder.map((optionTiles) => (
@@ -37,8 +37,8 @@ return (
                 Styles.text,
                 {
                   backgroundColor:
-                    optionTiles.name === 'OK' ||
-                    optionTiles.name === 'Log in' ||
+                    optionTiles.name === 'እሺ' ||
+                    optionTiles.name === 'ይቀጥሉ' ||
                     optionTiles.name === 'Yes'
                       ? '#EF9F64'
                       : '#E0E1E4',
@@ -50,8 +50,8 @@ return (
               <Text
                 style={{
                   color:
-                    optionTiles.name === 'OK' ||
-                    optionTiles.name === 'Log in' ||
+                    optionTiles.name === 'እሺ' ||
+                    optionTiles.name === 'ይቀጥሉ' ||
                     optionTiles.name === 'Yes'
                       ? 'black'
                       : 'grey',
@@ -80,7 +80,7 @@ return (
     modalCheckoutContainer: {
       backgroundColor: 'white',
       padding: 16,
-      height: '35%',
+      height: 'auto',
       width: '85%',
       marginHorizontal: 30,
       borderRadius: 50,

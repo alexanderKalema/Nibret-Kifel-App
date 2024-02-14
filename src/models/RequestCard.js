@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity } from 'react-native'
+import { View,  StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import GlobalText from '../global/global_text';
-import { set } from 'react-native-reanimated';
 import Connector from './connector';
 
 export default function RequestCard({form , filter}) {
@@ -57,13 +56,15 @@ export default function RequestCard({form , filter}) {
                        ...currentNameKefel,
                        {[value.replaceAll('_', ' ')]: form['data'][value]},
                      ]);
-                   } else if (value.includes('አይነት')) {
+                   } else if (value.includes('አይነት') || value.includes('ምክንያት')) {
                      setClothType((currentClothType) => [
                        ...currentClothType,
                        {[value.replaceAll('_', ' ')]: form['data'][value]},
                      ]);
-                   }
-                   else if (form['data'][value] != '' && !value.includes('Pending')) {
+                   } else if (
+                     form['data'][value] != '' &&
+                     !value.includes('Pending')
+                   ) {
                      setOthers((currentOther) => [
                        ...currentOther,
                        {[value.replaceAll('_', ' ')]: form['data'][value]},
@@ -124,30 +125,30 @@ export default function RequestCard({form , filter}) {
             <GlobalText
               mylabel={`${value} : ${items[value]}`}
               myfont={'PoppinsMedium'}
-              mystyle={{fontSize: 13}}
+              mystyle={{fontSize: 11 , color:'dark brown'}}
             />
           )),
         )}
       </View>
 
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', marginTop: 5}}>
+      <View style={{marginTop: 5}}>
         {clothType.map((items) =>
           Object.keys(items).map((value) => (
             <GlobalText
               mylabel={`${value} : ${items[value]}`}
               myfont={'PoppinsMedium'}
-              mystyle={{fontSize: 15}}
+              mystyle={{fontSize: 17}}
             />
           )),
         )}
       </View>
-      <View style={{marginHorizontal: 10}}>
+      <View style={{alignItems:'center'}}>
         {nameKefel.map((items) =>
           Object.keys(items).map((value) => (
             <GlobalText
               mylabel={`• ${value} : ${items[value]}`}
               myfont={'PoppinsMedium'}
-              mystyle={{fontSize: 13, marginHorizontal: 10, marginVertical: 5}}
+              mystyle={{fontSize: 15, marginHorizontal: 10, marginVertical: 5}}
             />
           )),
         )}
@@ -166,7 +167,7 @@ export default function RequestCard({form , filter}) {
             <GlobalText
               mylabel={`${value} : ${items[value]}`}
               myfont={'PoppinsMedium'}
-              mystyle={{fontSize: 14, color: 'grey', marginHorizontal: 10}}
+              mystyle={{fontSize: 13, color: 'grey', marginHorizontal: 10}}
             />
           )),
         )}
@@ -189,7 +190,7 @@ export default function RequestCard({form , filter}) {
       </View>
 
       {filter ? (
-        <View style={{flexDirection: 'row', marginTop: 20}}>
+        <View style={{flexDirection: 'row'}}>
           <View style={{flex: 1}}></View>
           <TouchableOpacity
             onPress={() => {
@@ -204,7 +205,7 @@ export default function RequestCard({form , filter}) {
                 zIndex: 5,
               }}>
               <GlobalText
-                mylabel={'Confirm'}
+                mylabel={'ያረጋግጡ'}
                 myfont={'Tailwind SC Regular'}
                 mystyle={{fontSize: 18, color: 'white'}}
               />

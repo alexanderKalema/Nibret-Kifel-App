@@ -1,10 +1,8 @@
 /* eslint-disable prettier/prettier */
 import {MultipleSelectList, SelectList} from 'react-native-dropdown-select-list';
-import { View, Text, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import React, {  useState } from 'react'
 import GlobalText from '../global/global_text';
-import { Button } from 'react-native-paper';
-import Input from './input';
 
 
 export default function DropMenu({data,label,multiAssigner,existing}) {
@@ -28,7 +26,9 @@ export default function DropMenu({data,label,multiAssigner,existing}) {
       />
 
       <View>
-        {label === 'Type' || label === 'የከፋይ ድግድጋቱ አይነት'||label==='የልብሰ ስብሃቱ አይነት' ? (
+        {label === 'አይነት' ||
+        label === 'የከፋይ ድግድጋቱ አይነት' ||
+        label === 'የልብሰ ስብሃቱ አይነት' ? (
           <SelectList
             defaultOption={existing + 1 ? data[existing] : null}
             setSelected={multiAssigner}

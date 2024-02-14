@@ -3,6 +3,7 @@
 /* eslint-disable eol-last */
 /* eslint-disable semi */
 /* eslint-disable prettier/prettier */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logIn } from './firebase_auth_provider';
 
 
@@ -12,11 +13,13 @@ export default ({email,password}) =>
     dispatch({
       type: 'LOGIN_LOADING',
     });
-
+await AsyncStorage.setItem('isLoggedin', 'true');
   await logIn({email,password})
-  .then( (userCredential) => {
+  .then(  (userCredential) => {
     // Sign
     const user = userCredential.user;
+
+   
     dispatch({
       type: 'LOGIN_SUCCESSFUL',
       payload: user,

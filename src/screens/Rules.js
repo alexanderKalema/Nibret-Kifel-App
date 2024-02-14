@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import GlobalText from '../global/global_text';
 import Ionicons from 'react-native-vector-icons/Ionicons';

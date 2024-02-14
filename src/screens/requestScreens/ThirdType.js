@@ -65,6 +65,7 @@ export default function ThirdType() {
   const [visible, setVisible] = useState(false);
   const [baleKabaForm, setBaleKabaForm] = useState({
     Cloth_Type: 'ባለካባ ልብሰ ስብሃት',
+    Reason: '',
     Reciever_Name: '',
     Date_Recieved: '',
     Date_Returned: '',
@@ -106,7 +107,7 @@ export default function ThirdType() {
       />
       <InformationDialog
         visible={infovisible}
-        content={'You have successfully added a new item.'}
+        content={'አዲስ ጥያቄ በትክክል ጨምረዋል'}
         setVisible={setinfoVisible}
         myfuntion={() => {
           pop();
@@ -139,6 +140,7 @@ export default function ThirdType() {
         <KeyboardAwareScrollView
           keyboardShouldPersistTaps={'never'}
           showsVerticalScrollIndicator={false}>
+          <Input label="ምክንያት" data="Reason" onChange={onChange} />
           <DropMenu
             data={BaleKabaType}
             label={'የልብሰ ስብሃቱ አይነት'}
@@ -183,7 +185,7 @@ export default function ThirdType() {
         </KeyboardAwareScrollView>
         <View>
           <TouchableOpacity onPress={showModal}>
-            <Submit label="Submit" />
+            <Submit label="ያመልክቱ" />
           </TouchableOpacity>
         </View>
       </View>

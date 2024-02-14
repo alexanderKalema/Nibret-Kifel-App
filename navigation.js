@@ -11,6 +11,7 @@ import FirstType from './src/screens/requestScreens/FirstType';
 import SecondType from './src/screens/requestScreens/SecondType';
 import ThirdType from './src/screens/requestScreens/ThirdType';
 import ViewTabStack from './src/screens/ViewReqeuest';
+import  New  from './src/services/notification/new';
 
 //import { Provider as ReduxProvider } from "react-redux";
 

@@ -31,10 +31,11 @@ export default function Input({label,value, onChange,data,populator}) {
       />
 
       <TextInput
-        editable={populator != undefined && label.includes('Id') ? false : true}
+        editable={
+          populator != undefined && label.includes('መለያ') ? false : true
+        }
         keyboardType={
-          label.includes('Enter') ||
-          label.includes('Amount') ||
+          label.includes('መጠን') ||
           label.includes('ቀሚስ') ||
           label.includes('አክሊል') ||
           label.includes('ሞጣህት') ||
@@ -46,13 +47,10 @@ export default function Input({label,value, onChange,data,populator}) {
             ? 'number-pad'
             : 'default'
         }
-        defaultValue={
-          populator != undefined ? populator[data].toString() : null
-        }
+        defaultValue={populator != undefined ? populator[data].toString() : null}
         onChangeText={
           !(
-            label.includes('Enter') ||
-            label.includes('Amount') ||
+            label.includes('መጠን') ||
             label.includes('ቀሚስ') ||
             label.includes('አክሊል') ||
             label.includes('ሞጣህት') ||

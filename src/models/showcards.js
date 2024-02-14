@@ -6,9 +6,8 @@
 
 import {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {Button, FlatList, ScrollView, Text, View} from 'react-native';
+import {FlatList} from 'react-native';
 import Cards from './cards';
-import { set } from 'react-native-reanimated';
 
 
 export function ShowCards({type,search}) {
@@ -19,65 +18,62 @@ export function ShowCards({type,search}) {
     
 
 
-    if (type === 'Lost') {
-     setAllPost([])
-      snapshot = await firestore()
-        .collection('Nibret')
-        .where('Amount_Lost', '>', 0)
-        .get();
-    } else if (type === 'Needs Repair') {
+    if (type === 'የጠፋ') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Amount_Needs_Repair', '>', 0)
+        .where('የጠፋ_መጠን', '>', 0)
         .get();
-    } else if (type === 'Good Shape') {
+    } else if (type === 'ጥገና የሚያስፈልገው') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Amount_In_Good_Shape', '>', 0)
+        .where('ጥገና_የሚያስፈልገው_መጠን', '>', 0)
         .get();
-    } else if (type === 'Other Amount') {
+    } else if (type === 'ጥሩ ሁኔታ ላይ ያለ') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Amount_Other', '>', 0)
+        .where('ጥሩ_ሁኔታ_ላይ_ያለ_መጠን', '>', 0)
         .get();
-    } else if (type === 'Steel') {
+    } else if (type === 'ሌላ ሁኔታ ላይ ያለ') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Type', '==', 'Made of steel')
+        .where('ሌላ_መጠን', '>', 0)
         .get();
-    } else if (type === 'Wood') {
+    } else if (type === 'የብረት') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Type', '==', 'Made of wood')
+        .where('አይነት', '==', 'የብረት እቃ')
         .get();
-    
-    } else if (type === 'Clothing') {
+    } else if (type === 'የእንጨት') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Type', '==', 'Clothing')
+        .where('አይነት', '==', 'የእንጨት እቃ')
         .get();
- 
-    } else if (type === 'Paper') {
+    } else if (type === 'አልባሳት') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Type', '==', 'Paper')
+        .where('አይነት', '==', 'አልባሳት')
         .get();
-    
-    } else if (type === 'Other Type') {
+    } else if (type === 'ወረቀት') {
       setAllPost([]);
       snapshot = await firestore()
         .collection('Nibret')
-        .where('Type', '==', 'Other')
+        .where('አይነት', '==', 'ወረቀት')
+        .get();
+    } else if (type === 'ሌላ አይነት') {
+      setAllPost([]);
+      snapshot = await firestore()
+        .collection('Nibret')
+        .where('አይነት', '==', 'ሌላ')
         .get();
     } else {
-     setAllPost([]);
+      setAllPost([]);
       snapshot = await firestore().collection('Nibret').get();
     }
 

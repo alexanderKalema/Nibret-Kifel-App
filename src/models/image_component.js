@@ -4,7 +4,7 @@
 /* eslint-disable semi */
 /* eslint-disable prettier/prettier */
 
-import {View, TextInput, StyleSheet, Button, TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet,  TouchableOpacity, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import GlobalText from '../global/global_text';
 import Submit from './submit';
@@ -48,7 +48,7 @@ export default function ImageComponent({label, popper,selectedImage ,existing}) 
       />
       <View
         style={{flexDirection: 'column', alignItems: 'center', marginTop: 18}}>
-        {(selectedImage === null && !existing) ? (
+        {selectedImage === null && !existing ? (
           <View style={{flex: 1, alignItems: 'center'}}>
             <Image
               resizeMode="contain"
@@ -56,7 +56,7 @@ export default function ImageComponent({label, popper,selectedImage ,existing}) 
               source={require('../../assets/images/empty.png')}
             />
             <GlobalText
-              mylabel={'No Images Added'}
+              mylabel={'ምስል አልጨመሩም'}
               myfont={'Tailwind SC Regular'}
               mystyle={{fontSize: 12}}
             />
@@ -65,14 +65,11 @@ export default function ImageComponent({label, popper,selectedImage ,existing}) 
           <Image
             resizeMode="stretch"
             style={{width: '100%', height: 300, marginRight: 10}}
-            source={
-              (checker())?
-              {uri:existing}:
-              {uri: selectedImage.path}}
+            source={checker() ? {uri: existing} : {uri: selectedImage.path}}
           />
         )}
         <TouchableOpacity onPress={() => popper()}>
-          <Submit label="Add Image" />
+          <Submit label="ምስል ይጨምሩ" />
         </TouchableOpacity>
       </View>
     </View>

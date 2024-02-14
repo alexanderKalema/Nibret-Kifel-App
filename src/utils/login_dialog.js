@@ -11,13 +11,17 @@ export default function LoginDialog({visible, setVisible}) {
     <Modal transparent visible={visible}>
       <GenericDialog
         icon={'error'}
-        title={'Login'}
-        content={"You should be logged in to continue"}
+        title={'መረጃዎን ያስገቡ'}
+        content={'ለመቀጠል ፍቃድ ያስፈልጎታል'}
         optionBuilder={[
-          {name: 'Log in', action: ()=>navigate("Login", {
-            setVisible:()=>setVisible(false),
-          })},
-          {name: 'Cancel', action: ()=>setVisible(false)},
+          {
+            name: 'ይቀጥሉ',
+            action: () =>
+              navigate('Login', {
+                setVisible: () => setVisible(false),
+              }),
+          },
+          {name: 'ይሰርዙ', action: () => setVisible(false)},
         ]}
       />
     </Modal>

@@ -38,12 +38,20 @@ export default function RenderRequest({pending}) {
 
   return (
     <FlatList
-    keyExtractor ={ () => {
-    return new Date().getTime().toString() + (Math.floor(Math.random() * Math.floor(new Date().getTime()))).toString();
-    }
-  }
-    data={allPost} renderItem={ (form) =>{  
-      return <RequestCard form={form.item} filter={pending}/> }} />
-  
-  )
+      listKey={() => {
+        return (
+          1000000 * Math.floor(Math.random() * Math.floor(new Date().getTime()))
+        ).toString();
+      }}
+      keyExtractor={() => {
+        return (
+          1000000 * Math.floor(Math.random() * Math.floor(new Date().getTime()))
+        ).toString();
+      }}
+      data={allPost}
+      renderItem={(form) => {
+        return <RequestCard form={form.item} filter={pending} />;
+      }}
+    />
+  );
 }

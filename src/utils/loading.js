@@ -19,7 +19,7 @@ export default function Loading({
         }}>
         <Grid size={60} color="orange"></Grid>
         <GlobalText
-          mylabel={'Please wait a moment '}
+          mylabel={'እባኮት ትንሽ ይጠብቁ'}
           myfont={'Tailwind SC Regular'}
           mystyle={{fontSize: 24, marginTop: 20, color: 'white'}}
         />

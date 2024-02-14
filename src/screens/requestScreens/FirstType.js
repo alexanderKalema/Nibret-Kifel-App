@@ -64,6 +64,7 @@ export default function FirstType() {
   const [visible, setVisible] = useState(false);
   const [degdegatForm, setDegdegatFormForm] = useState({
     Cloth_Type: 'ከፋይ ድግድጋት ልብሰ ስብሃት',
+    Reason:'' ,
     Reciever_Name: '',
     Date_Recieved: currentDate,
     Date_Returned: '',
@@ -113,7 +114,7 @@ export default function FirstType() {
       />
       <InformationDialog
         visible={infovisible}
-        content={'You have successfully added a new item.'}
+        content={'አዲስ ጥያቄ በትክክል ጨምረዋል'}
         setVisible={setinfoVisible}
         myfuntion={() => {
           pop();
@@ -146,6 +147,12 @@ export default function FirstType() {
         <KeyboardAwareScrollView
           keyboardShouldPersistTaps={'never'}
           showsVerticalScrollIndicator={false}>
+          <Input
+            label="ምክንያት"
+            data="Reason"
+            onChange={onChange}
+          />
+
           <DropMenu
             data={DegdegatType}
             label={'የከፋይ ድግድጋቱ አይነት'}
@@ -208,7 +215,7 @@ export default function FirstType() {
         </KeyboardAwareScrollView>
         <View>
           <TouchableOpacity onPress={showModal}>
-            <Submit label="Submit" />
+            <Submit label="ያመልክቱ" />
           </TouchableOpacity>
         </View>
       </View>

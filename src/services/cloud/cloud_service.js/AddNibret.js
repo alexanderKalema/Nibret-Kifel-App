@@ -7,20 +7,17 @@ export default (form) =>
   async (dispatch) => {
 
 try{
-  firestore()
-    .collection('Nibret')
-    .doc(form.Doc_Id)
-    .set({
-      Name: form.Name,
-      Id: form.Id,
-      Type: form.Type,
-      Amount_Lost: form.Amount_Lost,
-      Amount_In_Good_Shape: form.Amount_In_Good_Shape,
-      Amount_Needs_Repair: form.Amount_Needs_Repair,
-      Amount_Other: form.Amount_Other,
-      Image_id: form.Image_id,
-      addedAt: firestore.FieldValue.serverTimestamp(),
-    });
+  firestore().collection('Nibret').doc(form.ፋይል_መለያ).set({
+    ስም: form.ስም,
+    መለያ: form.መለያ,
+    የጠፋ_መጠን: form.የጠፋ_መጠን,
+    ጥሩ_ሁኔታ_ላይ_ያለ_መጠን: form.ጥሩ_ሁኔታ_ላይ_ያለ_መጠን,
+    ጥገና_የሚያስፈልገው_መጠን: form.ጥገና_የሚያስፈልገው_መጠን,
+    አይነት: form.አይነት,
+    ሌላ_መጠን: form.ሌላ_መጠን,
+    ምስል_መለያ: form.ምስል_መለያ,
+    የተጨመረበት_ጊዜ: firestore.FieldValue.serverTimestamp(),
+  });
      dispatch({
       type: 'ADD_SUCCESSFUL',
       payload: null,

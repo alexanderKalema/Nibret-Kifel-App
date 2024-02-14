@@ -21,8 +21,7 @@ import {useNavigation} from '@react-navigation/native';
 import ImagePicker from '../models/image_picker';
 import ImageComponent from '../models/image_component';
 import DropMenu from '../models/drop_menu';
-import {statusData, typeData} from '../constants/constant';
-import Trial from '../models/trial';
+import { typeData} from '../constants/constant';
 import storage from '@react-native-firebase/storage';
 import ConfirmationDialog from '../utils/confirmation_dialog';
 import { UpdateNibret } from '../services/cloud/cloud_service.js/UpdateNibret';
@@ -41,6 +40,8 @@ export default function EditProperty({route}) {
    const [loadingvisible, setloadingVisible] = useState(false);
    const [skipCount, setSkipCount] = useState(true);
    const [errorvisible, seterrorVisible] = useState(false);
+     const isMounted = useRef(false);
+
 
    useEffect(() => {
      seterrorVisible(!(error === null));
@@ -52,12 +53,13 @@ export default function EditProperty({route}) {
        setloadingVisible(true);
      }
    }, [loading]);
-   useEffect(() => {
-     if (skipCount) setSkipCount(false);
-     if (!skipCount) {
-       setinfoVisible(true);
-     }
-   }, [submitted]);
+    useEffect(() => {
+      if (isMounted.current) {
+        setinfoVisible(submitted);
+      } else {
+        isMounted.current = true;
+      }
+    }, [submitted]);
 
 
 
@@ -68,7 +70,7 @@ export default function EditProperty({route}) {
   const {pop} = useNavigation();
 
   const[index,setIndex]=useState(0);
-  const [type, setType] = useState([]);
+  const [type, setType] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [nibretForm, setNibretForm] = useState(route.params);
   const [localFile, setLocalFile] = useState(null);
@@ -84,7 +86,7 @@ export default function EditProperty({route}) {
   
   const renderImage = async () => {
 
-    const url = await storage().ref(`${nibretForm.Image_id}`).getDownloadURL();
+    const url = await storage().ref(`${nibretForm.ምስል_መለያ}`).getDownloadURL();
     setImageUrl(url);
   };
 
@@ -97,7 +99,7 @@ export default function EditProperty({route}) {
     const response = await fetch(localFile.path);
     const blob = await response.blob();
     const filename = blob._data.blobId;
-    nibretForm.Image_id = filename;
+    nibretForm.ምስል_መለያ = filename;
     var ref = storage().ref().child(filename).put(blob);
 
     try {
@@ -116,7 +118,7 @@ export default function EditProperty({route}) {
        payload: null,
      });
 
-    nibretForm.Doc_Id = nibretForm.Id.replaceAll('/', '_');
+    nibretForm.አይነት = type
 
     if(localFile){
    await uploadImage();
@@ -147,13 +149,11 @@ export default function EditProperty({route}) {
         .catch(error => {
         });
       
-        let myindex =typeData.findIndex(
-      (age)=>  age.value === nibretForm.Type 
+        let myindex = typeData.findIndex(
+          (age) => age.value === nibretForm.አይነት,
         );
-setIndex(myindex);
-        //setType(nibretForm.Type)
-   //   console.log(nibretForm);
-      
+         setIndex(myindex);
+        //setType(nibretForm.Type)      
       }
   
   
@@ -165,7 +165,7 @@ setIndex(myindex);
       <ConfirmationDialog
         visible={visible}
         setVisible={setVisible}
-        myfunction={()=>onUpdate(authDispatch)}
+        myfunction={() => onUpdate(authDispatch)}
       />
       <Loading visible={loadingvisible} />
       <ErrorDialog
@@ -175,9 +175,13 @@ setIndex(myindex);
       />
       <InformationDialog
         visible={infovisible}
-        content={'You have successfully Edited the item.'}
+        content={'አዲስ ንብረት በትክክል ተቀይረዋል'}
         setVisible={setinfoVisible}
-        myfuntion={() => pop()}
+        myfuntion={() => {pop();
+          authDispatch({
+            type: 'CLEAR_STATE',
+          });
+        }}
       />
 
       <View style={{flex: 1, paddingHorizontal: 25}}>
@@ -186,14 +190,14 @@ setIndex(myindex);
         </TouchableOpacity>
 
         <GlobalText
-          mylabel={' Edit Property'}
+          mylabel={'    ንብረት ማስተካከያ ቅጽ'}
           myfont={'PoppinsMedium'}
-          mystyle={{fontSize: 35, marginTop: 20}}
+          mystyle={{fontSize: 35, marginTop: 20, color: '#F7F7F7'}}
         />
       </View>
       <View style={Styles.subContainer}>
         <GlobalText
-          mylabel={'Enter new property information'}
+          mylabel={'የተስተካከለውን መረጃ ያስገቡ'}
           myfont={'PoppinsMedium'}
           mystyle={{fontSize: 20, marginLeft: 20, marginBottom: 15}}
         />
@@ -201,44 +205,44 @@ setIndex(myindex);
           keyboardShouldPersistTaps={'never'}
           showsVerticalScrollIndicator={false}>
           <Input
-            label="Name"
-            data="Name"
+            label="ስም"
+            data="ስም"
             onChange={onChange}
             populator={nibretForm}
           />
           <Input
-            label="Id"
-            data="Id"
+            label="መለያ"
+            data="መለያ"
             onChange={onChange}
             populator={nibretForm}
           />
           <DropMenu
             data={typeData}
-            label={'Type'}
+            label={'አይነት'}
             multiAssigner={setType}
             existing={index}
           />
           <Input
-            label="Amount Lost"
-            data="Amount_Lost"
+            label="የጠፋ መጠን"
+            data="የጠፋ_መጠን"
             onChange={onChange}
             populator={nibretForm}
           />
           <Input
-            label="Amount In Good Shape"
-            data="Amount_In_Good_Shape"
+            label="ጥሩ ሁኔታ ላይ ያለ መጠን"
+            data="ጥሩ_ሁኔታ_ላይ_ያለ_መጠን"
             onChange={onChange}
             populator={nibretForm}
           />
           <Input
-            label="Amount Needing Repair"
-            data="Amount_Needs_Repair"
+            label="ጥገና የሚያስፈልገው መጠን"
+            data="ጥገና_የሚያስፈልገው_መጠን"
             onChange={onChange}
             populator={nibretForm}
           />
           <Input
-            label="Amount Other"
-            data="Amount_Other"
+            label="ሌላ መጠን"
+            data="ሌላ_መጠን"
             onChange={onChange}
             populator={nibretForm}
           />
@@ -253,7 +257,7 @@ setIndex(myindex);
         </KeyboardAwareScrollView>
         <View>
           <TouchableOpacity onPress={showModal}>
-            <Submit label="Update" />
+            <Submit label="ያስተካከሉ" />
           </TouchableOpacity>
         </View>
       </View>

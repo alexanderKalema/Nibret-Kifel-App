@@ -20,6 +20,7 @@ export default (form) => async (dispatch) => {
       ሻሸ_መጠን: form.Amount_Shash,
       አክሊል_መጠን: form.Amount_Aklil,
       ጫማ_መጠን: form.Amount_Chama,
+      ምክንያት: form.Reason,
       ነጠላ_መጠን: form.Amount_Netela,
       አስረካቢው_ስም: form.Donor_Name,
       ምርመራ: form.Status,
